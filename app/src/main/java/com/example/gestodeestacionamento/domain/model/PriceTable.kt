@@ -1,0 +1,15 @@
+package com.example.gestodeestacionamento.domain.model
+
+data class PriceTable(
+    val id: Long,
+    val name: String,
+    val initialTolerance: String, // formato HH:mm
+    val untilTime: String? = null, // formato HH:mm
+    val untilValue: Double? = null,
+    val fromTime: String? = null, // formato HH:mm
+    val everyInterval: String? = null, // formato HH:mm
+    val addValue: Double? = null,
+    val maxChargePeriod: String? = null, // formato HH:mm
+    val maxChargeValue: Double? = null
+)
+
