@@ -1,304 +1,309 @@
-# Gestão de Estacionamento - Jump Park
+# Parking Management - Jump Park
 
-Aplicativo Android de gestão de estacionamento desenvolvido em Kotlin usando Clean Architecture, MVVM e SOLID principles.
+Android parking management application developed in Kotlin using Clean Architecture, MVVM, and SOLID principles.
 
-## Tecnologias Utilizadas
+## Technologies Used
 
-- **Kotlin** - Linguagem de programação
-- **Kotlin Multiplatform (KMP)** - Compartilhamento de código entre Android e Web
-- **Jetpack Compose** - Framework de UI
-- **Room Database** - Banco de dados local (Android)
-- **Ktor** - Cliente HTTP para requisições à API
-- **Koin** - Injeção de dependências
-- **Coroutines & Flow** - Programação assíncrona
-- **Navigation Compose** - Navegação entre telas
+- **Kotlin** - Programming language
+- **Kotlin Multiplatform (KMP)** - Code sharing between Android and Web
+- **Jetpack Compose** - UI framework
+- **Room Database** - Local database (Android)
+- **Ktor** - HTTP client for API requests
+- **Koin** - Dependency injection
+- **Coroutines & Flow** - Asynchronous programming
+- **Navigation Compose** - Screen navigation
 - **Material Design 3** - Design system
-- **MockK** - Framework de mocking para testes
-- **Turbine** - Biblioteca para testar Flows
+- **MockK** - Mocking framework for testing
+- **Turbine** - Library for testing Flows
 
-## Arquitetura
+## Architecture
 
-O projeto segue os princípios de **Clean Architecture** com as seguintes camadas:
+The project follows **Clean Architecture** principles with the following layers:
 
-- **Presentation**: ViewModels e Telas (Compose)
-- **Domain**: Use Cases, Models e Interfaces de Repositórios
-- **Data**: Implementação de Repositórios, API Service, Database e Mappers
+- **Presentation**: ViewModels and Screens (Compose)
+- **Domain**: Use Cases, Models, and Repository Interfaces
+- **Data**: Repository implementations, API Service, Database, and Mappers
 
-## Funcionalidades
+## Features
 
-- ✅ Login de usuário
-- ✅ Tela inicial com estatísticas (veículos no pátio e pagamentos)
-- ✅ Entrada de veículo
-- ✅ Lista de veículos no pátio
-- ✅ Detalhamento e saída de veículo com cálculo automático de valor
-- ✅ Encerramento de sessão de trabalho
-- ✅ Sincronização com API Operacional
-- ✅ Persistência local de dados
+- ✅ User login
+- ✅ Home screen with statistics (vehicles in the yard and payments)
+- ✅ Vehicle entry
+- ✅ List of vehicles in the yard
+- ✅ Vehicle details and exit with automatic value calculation
+- ✅ Work session closing
+- ✅ Synchronization with Operational API
+- ✅ Local data persistence
 
-## Configuração do Ambiente
+## Environment Setup
 
-### Pré-requisitos
+### Prerequisites
 
-- Android Studio Narwhal Feature Drop | 2025.1.2 Patch 2 ou superior
-- JDK 11 ou superior
+- Android Studio Narwhal Feature Drop | 2025.1.2 Patch 2 or higher
+- JDK 11 or higher
 - Android SDK 24+ (minSdk)
-- Emulador Android ou dispositivo físico
+- Android emulator or physical device
 
-### Passos para Executar
+### Steps to Run
 
-1. **Clone o repositório**
+1. **Clone the repository**
    ```bash
-   git clone <url-do-repositório>
+   git clone <repository-url>
    cd GestodeEstacionamento
    ```
 
-2. **Abra o projeto no Android Studio**
-   - File > Open > Selecione a pasta do projeto
+2. **Open the project in Android Studio**
+   - File > Open > Select the project folder
 
-3. **Sincronize as dependências**
-   - O Gradle irá baixar automaticamente todas as dependências
+3. **Sync dependencies**
+   - Gradle will automatically download all dependencies
 
-4. **Configure a conta de usuário**
-   - Acesse: https://teste-admin.jumppark.com.br
-   - Crie uma conta de usuário
-   - Certifique-se de ter apenas **um estabelecimento** vinculado à conta
-   - No estabelecimento, crie ao menos **uma tabela de estacionamento** (Negócio > Tabela de estacionamento)
+4. **Configure the user account**
+   - Access: https://teste-admin.jumppark.com.br
+   - Create a user account
+   - Make sure you have only **one establishment** linked to the account
+   - In the establishment, create at least **one parking pricing table** (Business > Parking pricing table)
 
-5. **Execute o aplicativo**
-   - Conecte um dispositivo ou inicie um emulador
-   - Clique em Run (Shift+F10) ou use o botão de play
+5. **Run the application**
+   - Connect a device or start an emulator
+   - Click Run (Shift+F10) or use the play button
 
-## Como Testar
+## How to Test
 
 ### 1. Login
-- Abra o aplicativo
-- Informe o email e senha da conta criada no site
-- Clique em "Entrar"
-- O aplicativo irá automaticamente sincronizar os dados (tabelas de preços e formas de pagamento)
+- Open the application
+- Enter the email and password of the account created on the site
+- Click “Sign In”
+- The app will automatically synchronize data (pricing tables and payment methods)
 
-### 2. Tela Inicial (Home)
-- Visualize o total de veículos no pátio
-- Visualize os pagamentos agrupados por forma de pagamento
-- Visualize o total geral de pagamentos
-- Use o botão de sincronização (ícone de refresh) para atualizar os dados da API
+### 2. Home Screen
+- View total vehicles in the yard
+- View payments grouped by payment method
+- View total payment amount
+- Use the sync button (refresh icon) to update API data
 
-### 3. Entrada de Veículo
-- Clique em "Entrada de Veículo"
-- Preencha:
-  - Placa (ex: ABC1234)
-  - Modelo (ex: Honda Civic)
-  - Cor (ex: Branco)
-  - Selecione uma tabela de preços
-- Clique em "Cadastrar Entrada"
-- O veículo será salvo localmente e aparecerá na lista
+### 3. Vehicle Entry
+- Click “Vehicle Entry”
+- Fill in:
+  - Plate (ex: ABC1234)
+  - Model (ex: Honda Civic)
+  - Color (ex: White)
+  - Select a pricing table
+- Click “Register Entry”
+- The vehicle will be saved locally and appear in the list
 
-### 4. Lista de Veículos no Pátio
-- Clique em "Lista de Veículos no Pátio"
-- Visualize todos os veículos que estão no pátio
-- Clique em um veículo para ver os detalhes
+### 4. Vehicle List in the Yard
+- Click “Vehicle List in the Yard”
+- View all vehicles currently in the yard
+- Click a vehicle to see details
 
-### 5. Saída de Veículo
-- Na tela de detalhes do veículo:
-  - Visualize as informações do veículo
-  - O valor da estadia será calculado automaticamente baseado na tabela de preços
-  - Selecione uma forma de pagamento
-  - Clique em "Dar Saída"
-  - Confirme a ação no diálogo
-  - O veículo será removido do pátio e o pagamento será registrado
+### 5. Vehicle Exit
+- On the vehicle detail screen:
+  - View vehicle information
+  - The stay value will be calculated automatically based on the pricing table
+  - Select a payment method
+  - Click “Process Exit”
+  - Confirm the action in the dialog
+  - The vehicle will be removed from the yard and payment recorded
 
-### 6. Encerrar Sessão
-- Na tela inicial, clique em "Encerrar Sessão"
-- Confirme a ação no diálogo
-- Todos os dados locais serão apagados
-- Você será deslogado e retornará à tela de login
+### 6. Close Session
+- On the home screen, click “Close Session”
+- Confirm the action in the dialog
+- All local data will be deleted
+- You will be logged out and returned to the login screen
 
-## Estrutura do Banco de Dados
+## Database Structure
 
-O banco de dados local utiliza Room e possui as seguintes tabelas:
+The local database uses Room and includes the following tables:
 
-- **vehicles**: Armazena informações dos veículos
-- **price_tables**: Armazena as tabelas de preços sincronizadas da API
-- **payment_methods**: Armazena as formas de pagamento sincronizadas da API
-- **payments**: Armazena os pagamentos realizados
+- **vehicles**: Stores vehicle information
+- **price_tables**: Stores pricing tables synchronized from the API
+- **payment_methods**: Stores payment methods synchronized from the API
+- **payments**: Stores completed payments
 
-Veja o diagrama UML completo em `DATABASE_UML.md`
+See the full UML diagram in `DATABASE_UML.md`
 
 ## API
 
-O aplicativo se integra com a API Operacional da Jump Park:
+The application integrates with the Jump Park Operational API:
 
 - **Base URL**: `https://dev.app.jumpparkapi.com.br/api`
-- **Endpoints utilizados**:
-  - `POST /user/login` - Login de usuário
-  - `GET /{userId}/establishment/{establishmentId}/sync/manual` - Sincronização manual
-  - `POST /{userId}/establishment/{establishmentId}/session/close/{sessionId}` - Encerrar sessão
+- **Endpoints used**:
+  - `POST /user/login` - User login
+  - `GET /{userId}/establishment/{establishmentId}/sync/manual` - Manual synchronization
+  - `POST /{userId}/establishment/{establishmentId}/session/close/{sessionId}` - Close session
 
-## Cores do Tema
+## Theme Colors
 
-O aplicativo utiliza as cores da identidade visual da Jump Park:
-- **Verde**: `#4CAF50` (Primary)
-- **Azul Escuro**: `#1A237E` (Secondary)
-- **Branco**: `#FFFFFF` (Background)
+The application uses Jump Park’s visual identity colors:
 
-## Testes Unitários
+- **Green**: `#4CAF50` (Primary)
+- **Dark Blue**: `#1A237E` (Secondary)
+- **White**: `#FFFFFF` (Background)
 
-O projeto possui uma suíte de testes unitários cobrindo os principais componentes da aplicação. Atualmente, **27 testes estão passando** com sucesso.
+## Unit Tests
 
-### Testes Implementados e Funcionais
+The project includes a unit testing suite covering the main application components. Currently, **27 tests are passing** successfully.
 
-1. **CalculateParkingFeeUseCaseTest** (8 testes) - Testa a lógica de cálculo de tarifas de estacionamento:
-   - Cálculo com tolerância inicial
-   - Aplicação de regras "até" e "a partir de"
-   - Cálculo de períodos adicionais
-   - Aplicação de valor máximo
-   - Arredondamento de períodos parciais
+### Implemented and Functional Tests
 
-2. **LoginViewModelTest** (8 testes) - Testa a lógica de autenticação:
-   - Inicialização com estado vazio
-   - Atualização de email e senha
-   - Validação de campos obrigatórios (email e senha vazios)
-   - Fluxo de login bem-sucedido
-   - Tratamento de erros de autenticação
-   - Limpeza de erros
-   - Remoção de espaços em branco do email
+1. **CalculateParkingFeeUseCaseTest** (8 tests) — Tests parking fee calculation logic:
+   - Initial tolerance calculation
+   - Application of “up to” and “from” rules
+   - Additional period calculation
+   - Maximum value enforcement
+   - Partial period rounding
 
-3. **VehicleEntryViewModelTest** (7 testes) - Testa a lógica de entrada de veículos:
-   - Inicialização com estado vazio
-   - Atualização de placa e conversão para maiúsculas
-   - Atualização de modelo e cor
-   - Seleção de tabela de preços
-   - Carregamento de tabelas de preços do repositório
-   - Remoção de espaços em branco dos campos ao registrar
+2. **LoginViewModelTest** (8 tests) — Tests authentication logic:
+   - Initialization with empty state
+   - Email and password updates
+   - Required field validation
+   - Successful login flow
+   - Authentication error handling
+   - Error clearing
+   - Email whitespace trimming
 
-4. **VehicleDetailViewModelTest** (11 testes) - Testa a lógica de detalhes e saída de veículos:
-   - Inicialização com estado vazio
-   - Carregamento de veículo e cálculo de valor
-   - Exibição de erro quando veículo não é encontrado
-   - Recalculo de valor
-   - Seleção de método de pagamento
-   - Validação de método de pagamento na saída
-   - Processamento de saída com sucesso
-   - Formatação de data e hora
-   - Limpeza de erros
-   - Reset de estado de sucesso
-   - Permissão de saída com valor zero (dentro da tolerância)
+3. **VehicleEntryViewModelTest** (7 tests) — Tests vehicle entry logic:
+   - Initialization with empty state
+   - Plate update and uppercase conversion
+   - Model and color updates
+   - Pricing table selection
+   - Repository pricing table loading
+   - Field whitespace trimming on registration
 
-### Executando os Testes
+4. **VehicleDetailViewModelTest** (11 tests) — Tests vehicle details and exit logic:
+   - Initialization with empty state
+   - Vehicle loading and value calculation
+   - Error display when vehicle not found
+   - Value recalculation
+   - Payment method selection
+   - Exit validation
+   - Successful exit processing
+   - Date/time formatting
+   - Error clearing
+   - Success state reset
+   - Zero-value exit allowed (within tolerance)
 
-Para executar todos os testes unitários no Android Studio:
-1. Clique com o botão direito na pasta `app/src/test`
-2. Selecione "Run 'Tests in 'test''"
+### Running Tests
 
-Ou via linha de comando:
+To run all unit tests in Android Studio:
+
+1. Right-click `app/src/test`
+2. Select “Run 'Tests in test'”
+
+Or via command line:
+
 ```bash
 ./gradlew test
 ```
 
-Para executar um teste específico:
+To run a specific test:
+
 ```bash
 ./gradlew test --tests "com.example.gestodeestacionamento.domain.usecase.CalculateParkingFeeUseCaseTest"
 ```
 
-### Dependências de Teste
+### Test Dependencies
 
-- **JUnit 4** - Framework de testes
-- **MockK** - Mocking framework para Kotlin
-- **Turbine** - Teste de Flows
-- **kotlinx-coroutines-test** - Teste de coroutines
-- **androidx.arch.core:core-testing** - Teste de ViewModels
+- **JUnit 4** - Testing framework
+- **MockK** - Kotlin mocking framework
+- **Turbine** - Flow testing
+- **kotlinx-coroutines-test** - Coroutine testing
+- **androidx.arch.core:core-testing** - ViewModel testing
 
 ## Kotlin Multiplatform (KMP)
 
-O projeto está configurado para suportar Kotlin Multiplatform, permitindo compartilhar código entre Android e Web.
+The project is configured to support Kotlin Multiplatform, allowing code sharing between Android and Web.
 
-### Estrutura KMP
+### KMP Structure
 
 ```
 app/src/
-├── commonMain/          # Código compartilhado entre plataformas
-│   └── kotlin/.../platform/  # Abstrações expect/actual
-├── androidMain/         # Implementações específicas do Android
-│   └── kotlin/.../platform/  # Implementações Android
-└── jsMain/             # Implementações específicas da Web
-    └── kotlin/.../platform/  # Implementações Web
+├── commonMain/          # Shared code between platforms
+│   └── kotlin/.../platform/  # expect/actual abstractions
+├── androidMain/         # Android-specific implementations
+│   └── kotlin/.../platform/  # Android implementations
+└── jsMain/              # Web-specific implementations
+    └── kotlin/.../platform/  # Web implementations
 ```
 
-### Abstrações Expect/Actual Implementadas
+### Implemented Expect/Actual Abstractions
 
-1. **PlatformStorage** - Armazenamento local:
+1. **PlatformStorage** — Local storage:
    - Android: DataStore
    - Web: LocalStorage
 
-2. **DatabaseFactory** - Factory de banco de dados:
+2. **DatabaseFactory** — Database factory:
    - Android: Room Database
-   - Web: LocalStorage (simplificado)
+   - Web: LocalStorage (simplified)
 
-3. **Navigation** - Navegação:
+3. **Navigation** — Navigation:
    - Android: Navigation Compose
    - Web: Navigation Compose
 
-4. **ViewModel** - ViewModels:
+4. **ViewModel** — ViewModels:
    - Android: Koin ViewModel
    - Web: Koin ViewModel
 
-### Executando no Android
+### Running on Android
 
 ```bash
 ./gradlew :app:assembleDebug
 ```
 
-### Executando na Web
+### Running on Web
 
 ```bash
-# Build para desenvolvimento
+# Development build
 ./gradlew :app:jsBrowserDevelopmentWebpack
 
-# Build para produção
+# Production build
 ./gradlew :app:jsBrowserProductionWebpack
 ```
 
-Os arquivos gerados estarão em:
-- Desenvolvimento: `app/build/dist/js/developmentExecutable/`
-- Produção: `app/build/dist/js/productionExecutable/`
+Generated files will be located in:
 
-Para mais detalhes sobre a migração KMP, consulte:
-- `KMP_MIGRATION_GUIDE.md` - Guia de migração
-- `README_KMP.md` - Documentação completa do KMP
+- Development: `app/build/dist/js/developmentExecutable/`
+- Production: `app/build/dist/js/productionExecutable/`
 
-## Geração de APK
+For more details about KMP migration:
 
-Para gerar o APK de debug:
+- `KMP_MIGRATION_GUIDE.md` — Migration guide
+- `README_KMP.md` — Complete KMP documentation
+
+## APK Generation
+
+To generate the debug APK:
 
 ```bash
 ./gradlew assembleDebug
 ```
 
-O APK estará em: `app/build/outputs/apk/debug/app-debug.apk`
+APK location: `app/build/outputs/apk/debug/app-debug.apk`
 
-Para gerar o APK de release:
+To generate the release APK:
 
 ```bash
 ./gradlew assembleRelease
 ```
 
-O APK estará em: `app/build/outputs/apk/release/app-release.apk`
+APK location: `app/build/outputs/apk/release/app-release.apk`
 
-## Observações Importantes
+## Important Notes
 
-1. **Sessão Única**: A API permite apenas uma sessão aberta por usuário em um estabelecimento. Se houver problemas, encerre a sessão diretamente no site em "Registro de sessões > Encerrar a sessão".
+1. **Single Session**: The API allows only one open session per user per establishment. If issues occur, close the session directly on the website under “Session records > Close session”.
 
-2. **Estabelecimento Único**: Para o funcionamento correto do teste, a conta deve ter apenas um estabelecimento vinculado.
+2. **Single Establishment**: For correct testing, the account must have only one linked establishment.
 
-3. **Tabela de Preços**: É necessário ter ao menos uma tabela de estacionamento criada no estabelecimento antes de usar o aplicativo.
+3. **Pricing Table**: At least one parking pricing table must be created before using the app.
 
-4. **Dados Locais**: Todos os veículos e pagamentos são armazenados localmente. Ao encerrar a sessão, todos os dados são apagados.
+4. **Local Data**: All vehicles and payments are stored locally. Closing the session deletes all data.
 
+## Database UML Diagram
 
-## Diagrama UML do Banco de Dados
+Refer to `DATABASE_UML.md` to view the full database diagram.
 
-Consulte o arquivo `DATABASE_UML.md` para visualizar o diagrama completo do banco de dados.
-
-## FOTOS DO PROJETO ANDROID
+## ANDROID PROJECT SCREENSHOTS
 
 <img width="300" height="700" alt="Screenshot_20251220_002039" src="https://github.com/user-attachments/assets/e20fd059-150b-4d2b-9649-7b79e82c0ecc" />
 <img width="300" height="700" alt="Screenshot_20251220_192254" src="https://github.com/user-attachments/assets/18531f2c-212e-4cd9-8073-4b1a701139f5" />
@@ -309,4 +314,3 @@ Consulte o arquivo `DATABASE_UML.md` para visualizar o diagrama completo do banc
 <img width="300" height="700" alt="Screenshot_20251220_002051" src="https://github.com/user-attachments/assets/609727d8-c4bd-4fb5-8d4c-db8809d9cfa5" />
 <img width="600" height="700" alt="Screenshot_1" src="https://github.com/user-attachments/assets/a8d927a7-e6f9-414c-8b2b-2dbfdd61e28b" />
 <img width="1000" height="600" alt="image" src="https://github.com/user-attachments/assets/909bc89a-5df8-45c2-8f34-f4068f9c0646" />
-
